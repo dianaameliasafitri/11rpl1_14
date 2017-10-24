@@ -10,11 +10,24 @@
 <?php 
 $host= "localhost";
 $user= "root";
-$password= "";
+$pass= "";
+
 $email=$_GET['email'];
-$fullname=$_GET['fullname'];
-$user=$_GET['user'];
-$pw=$_GET['pw'];
+$Full_name=$_GET['Full_name'];
+$Username=$_GET['Username'];
+$password=$_GET['password'];
+if($Full_name)
+	
+{
+	$koneksi= mysqli_connect($host, $user, $pass);
+	mysqli_select_db ($koneksi,'dblogin');
+	$sql="insert into tinstagram values('$email', '$Full_name', '$Username', '$password')";
+	$hasil=mysqli_query($koneksi,$sql);
+}
+if ($koneksi->connect_errno) {
+	echo "Gagal koneksi ke server";
+}
+
 ?>
 
 <div id="container">
@@ -27,16 +40,16 @@ $pw=$_GET['pw'];
 			Email or Number Phone: <?php echo" $email" ?><br>
 		</div>
 
-		<div class="fullname">
-			Full name : <?php echo "$fullname"; ?><br>
+		<div class="Full_name">
+			Full name : <?php echo "$Full_name"; ?><br>
 		</div>
 
-		<div class="user">
-			Username  : <?php echo "$user"; ?><br>
+		<div class="Username">
+			Username  : <?php echo "$Username"; ?><br>
 		</div>
 
-		<div class="pw">
-			Password : <?php echo "$pw"; ?><br>
+		<div class="password">
+			Password : <?php echo "$password"; ?><br>
 		</div>
 		
 		
